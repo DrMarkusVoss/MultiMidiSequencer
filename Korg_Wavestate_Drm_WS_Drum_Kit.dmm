@@ -1,0 +1,39 @@
+# Drum MIDI Mapping file
+#
+# This is for: Korg Wavestate
+# Performance: MV Simple Drumkit.wsperf
+#
+# Controls the Drumkit on Layer A:
+# Single Multisample: "Drm_WS: Drum Kit".
+# Layer A: Transpose: +24 (so that you can use the keys
+#                          on the Wavestate to play the other layers)
+#
+# by Dr. Markus Voss
+
+# Instrument Shortcuts, FYI:
+# BD1 = BaseDrum1
+# CHH = Closed Hi-hat
+# OHH = Open Hi-hat
+# SN1 = Snare1
+# SN2 = Snare2
+# CR1 = Crash1
+# CR2 = Crash2
+# RD1 = Ride1
+# RD2 = Ride2
+# CB1 = Cowbell1
+# CP1 = Clap1
+# TM1 = TOM1
+# TM2 = TOM2
+# TM3 = TOM3
+# TM4 = TOM4
+
+# MIDI note mapping:
+# (original notes +24, but these here consider the "transpose +24")
+BD1 12
+SN1 15
+SN2 16
+CHH 29
+OHH 31
+CR1 32
+CB1 41
+CP1 22
