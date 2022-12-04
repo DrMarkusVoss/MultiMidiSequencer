@@ -26,6 +26,8 @@
 # TM2 = TOM2
 # TM3 = TOM3
 # TM4 = TOM4
+# RM1 = RIM1
+# RM2 = RIM2
 
 # MIDI note mapping:
 # (original notes +24, but these here consider the "transpose +24")
@@ -37,3 +39,11 @@ OHH 31
 CR1 32
 CB1 41
 CP1 22
+TM1 28
+TM2 26
+TM3 24
+TM4 23
+RM1 17
+RM2 18
+
+
