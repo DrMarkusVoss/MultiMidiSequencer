@@ -32,7 +32,7 @@ from here: https://github.com/SpotlightKid/python-rtmidi/tree/master/examples/dr
 
 which is itself based on:
 
-MIDI Drum sequencer prototype, by Michiel Overtoom, motoom@xs4all.nl
+MIDI Drum sequencer prototype, by Michiel Overtoom, motoom@xs4all.nl (http://www.michielovertoom.com/).
 
 The code will subsequently be reworked into the idea that I have in mind.
 
