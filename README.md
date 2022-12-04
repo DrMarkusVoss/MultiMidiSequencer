@@ -3,7 +3,7 @@ A software sequencer that allows for multiple different sequences running at the
 
 
 ## Example with a Korg Wavestate
-Check out this repo on your PC (MAC)-
+Check out this repo on your PC (MAC).
 
 
 Import the performance "MV Simple Drumkit.wsperf" that is here in the repository into your Korg Wavestate using the
@@ -14,6 +14,10 @@ On your PC (MAC), execute the following command:
 ```
  python3 multimidiseq.py -m Korg_Wavestate_Drm_WS_Drum_Kit.dmm four_on_the_floor.sdp 
 ```
+
+The file `Korg_Wavestate_Drm_WS_Drum_Kit.dmm` contains the MIDI mapping to the Wavestate with the given performance.
+
+The file `four_on_the_floor.sdp` contains the beat patterns that will be played.
 
 ## Installation Requirements
 - needs Python3 (tested with version 3.8.2; definitely a version >3.2 needed as argparse is used) and pip3 (usually comes with Python)
