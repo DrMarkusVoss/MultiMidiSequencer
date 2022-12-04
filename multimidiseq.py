@@ -8,7 +8,7 @@
 # which is itself based on:
 # MIDI Drum sequencer prototype, by Michiel Overtoom, motoom@xs4all.nl
 #
-"""Play drum pattern from file to MIDI out."""
+"""Play sequencer patterns from file to MIDI out."""
 
 import argparse
 import sys
