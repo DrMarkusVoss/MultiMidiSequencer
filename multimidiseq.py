@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# drumseq.py
+# multimidiseq.py
 #
 # based on: drumseq.py
 # from here: https://github.com/SpotlightKid/python-rtmidi/tree/master/examples/drumseq
