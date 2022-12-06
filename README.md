@@ -13,8 +13,8 @@ A pattern is encoded according to the following rules in a text file:
   - the instrument shortcuts are defined in a Drum MIDI Mapping file (`.dmm`, see folder `DrumMidiMappings`) and
     is an alias for a MIDI Note value
   - the second part after the instrument is the pattern that the instrument shall play encoded with characters,
-    with each character representing a 1/16 noteof a 4/4 beat.
-  - tracks can have different length; the tracks that are shorter than other in the same file will be repeated as often
+    with each character representing a 1/16 note of a 4/4 beat.
+  - tracks can have different length; the tracks that are shorter than others in the same file will be repeated as often
     as it matches the length of the longest track; to indicate that really nothing shall be played you have to 
     actively encode that with `.` (off) characters for the length of the longest track.
   - here is the character encoding:
@@ -28,8 +28,9 @@ Drum Pattern Characters:
         m : medium          Note on with velocity 100
         x : hard            Note on with velocity 120
 ```
-Here is an ea
-Drum pattern example:
+
+Here is a Drum pattern example:
+
 ```
 file: ./DrumSeqPatterns/basic_drum_2.sdp
 
@@ -42,11 +43,12 @@ SN1 ....m-......m-......m-......m-..
 CHH xsss
 CR1 x-..............................
 ```
-This example is a pattern of 1 bar in a 4/4 beat with described with 16 1/16 notes. `BD1` is the pattern for the
+This example is a pattern of 1 bar in a 4/4 beat described with 16 1/16 notes. `BD1` is the pattern for the
 base drum (kick drum), `SN1` is for the snare drum, `CHH` is for the closed hi-hat and `CR1` is the crash cymbal.
 Note that here the pattern for the closed hi-hat has only 4 characters, representing 4 1/16 notes. This means that 
 during the whole bar this pattern is repeated 4 times, matching the length of 16 notes for the whole pattern which
-is defined by the longest track (which are basically all the others that are all 16 notes long).
+is defined by the longest track (which are basically all the others that are all 16 notes long). Principally, you
+can have as many tracks in a file as you want. 
 
 See examples of further drum patterns in the folder `DrumSeqPatterns` of this repository.
 
