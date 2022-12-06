@@ -2,7 +2,8 @@
 A software sequencer that allows for multiple different sequences running at the same time using MIDI
 
 ## The Drum Pattern Sequencer
-The drum pattern sequencer plays patterns encoded in ascii-based text files.
+The drum pattern sequencer plays patterns encoded in ascii-based text files. It is inspired by the programming
+principles of famous drum machines like the Roland TR808 and TR909 and it's clones, the Behringer RD-8 and RD-9.
 
 A pattern is encoded according to the following rules in a text file:
 - a "sequencer drum pattern" is stored in a file with the ending `.sdp`
@@ -29,7 +30,7 @@ Drum Pattern Characters:
         x : hard            Note on with velocity 120
 ```
 
-Here is a Drum pattern example:
+Here is a drum pattern example:
 
 ```
 file: ./DrumSeqPatterns/basic_drum_2.sdp
