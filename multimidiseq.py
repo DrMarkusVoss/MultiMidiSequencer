@@ -68,17 +68,6 @@ CHH xsssxsssxsssxsssxsssxsssxsssxsss
 """
 
 
-DRUMPATTERN1 = """"
-36 x.....s.x.......x.....m.x....... Bassdrum
-53 xsssxsssxsssxsssxsssxsssxsssxsss Closed Hi-hat
-"""
-
-
-DRUMPATTERN2 = """"
-# 36 x.....s.x.......x.....m.x....... Bassdrum
-53 x+++x+++x+++x+++x+++x+++x+++x+++ Closed Hi-hat
-"""
-
 # Wave Sequencing 2.0 Synth Pattern
 WSSPATTERN1 = """"
 BASENOTE 48
