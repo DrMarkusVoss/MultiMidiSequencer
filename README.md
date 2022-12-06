@@ -47,7 +47,7 @@ CR1 x-..............................
 This example is a pattern of 2 bars in a 4/4 beat described with 32 1/16 notes. `BD1` is the pattern for the
 base drum (kick drum), `SN1` is for the snare drum, `CHH` is for the closed hi-hat and `CR1` is the crash cymbal.
 Note that here the pattern for the closed hi-hat has only 4 characters, representing 4 1/16 notes. This means that 
-during the whole bar this pattern is repeated 8 times, matching the length of 32 notes for the whole pattern which
+during the whole two bars this pattern is repeated 8 times, matching the length of 32 notes for the whole pattern which
 is defined by the longest track (which are basically all the others that are all 32 notes long). Principally, you
 can have as many tracks in a file as you want. 
 

@@ -216,24 +216,23 @@ class Drumpattern(object):
         self.instruments = []
         self.kit = kit
         self.humanize = humanize
-        self.drummidimapping_raw = drummidimapping
         self.drummidimapping = {}
         self.steps = []
         self.step = []
-
-        self.initDrumMidiMapping()
-        self.initDrumPattern(pattern)
-
         self._notes = {}
 
+        self.initDrumMidiMapping(drummidimapping)
+        self.initDrumPattern(pattern)
 
-    def initDrumMidiMapping(self):
-        dmm1 = (line.strip() for line in self.drummidimapping_raw.splitlines())
+
+    def initDrumMidiMapping(self, drummidimapping_raw):
+        dmm1 = (line.strip() for line in drummidimapping_raw.splitlines())
         dmm2 = (line for line in dmm1 if line and line[0] != '#')
         for line in dmm2:
             parts = line.split(" ", 2)
             self.drummidimapping[parts[0]] = int(parts[1])
         print(self.drummidimapping)
+
 
     def initDrumPattern(self, pattern_raw):
         dp1 = (line.strip() for line in pattern_raw.splitlines())
@@ -250,9 +249,11 @@ class Drumpattern(object):
                 self.steps.append(len(strokes))
                 self.step.append(0)
 
+
     def reset(self):
         for i in enumerate(self.step):
             self.step[i] = 0
+
 
     def playstep(self, midiout, channel=9):
         i=0
@@ -279,6 +280,7 @@ class Drumpattern(object):
 
             i += 1
 
+
 def selectInputPort():
     portnrstr = input("Select the input port by typing the corresponding number: ")
     selected_input_port = int(portnrstr)
@@ -291,6 +293,7 @@ def selectOutputPort():
     selected_output_port = int(portnrstr)
 
     return selected_output_port
+
 
 def main(args=None):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -332,9 +335,6 @@ def main(args=None):
     kit = (args.bank_msb, args.bank_lsb, args.kit)
     drumpattern = Drumpattern(pattern, drummidimap, kit=kit,
                           humanize=args.humanize)
-
-
-
 
     list_output_ports()
 
