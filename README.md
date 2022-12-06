@@ -17,7 +17,7 @@ On your PC (MAC), execute the following command:
 
 The file `Korg_Wavestate_Drm_WS_Drum_Kit.dmm` contains the MIDI mapping to the Wavestate with the given performance.
 
-The file `four_on_the_floor.sdp` contains the beat patterns that will be played.
+The file `basic_drum_2.sdp` contains the beat patterns that will be played.
 
 ## Example with the Singular Sound Beat Buddy Pedal
 Connect the Beat Buddy MIDI-in to your Audio interfaces MIDI-out.

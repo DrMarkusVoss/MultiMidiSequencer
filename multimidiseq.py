@@ -229,24 +229,14 @@ class Drumpattern(object):
         self.humanize = humanize
         self.drummidimapping_raw = drummidimapping
         self.drummidimapping = {}
+        self.steps = []
+        self.step = []
 
         self.initDrumMidiMapping()
+        self.initDrumPattern(pattern)
 
-        pattern = (line.strip() for line in pattern.splitlines())
-        pattern = (line for line in pattern if line and line[0] != '#')
-
-        for line in pattern:
-            parts = line.split(" ", 2)
-            print(parts)
-
-            if len(parts) == 2:
-                patch, strokes = parts
-                patch = patch
-                self.instruments.append((patch, strokes))
-                self.steps = len(strokes)
-
-        self.step = 0
         self._notes = {}
+
 
     def initDrumMidiMapping(self):
         dmm1 = (line.strip() for line in self.drummidimapping_raw.splitlines())
@@ -256,13 +246,29 @@ class Drumpattern(object):
             self.drummidimapping[parts[0]] = int(parts[1])
         print(self.drummidimapping)
 
+    def initDrumPattern(self, pattern_raw):
+        dp1 = (line.strip() for line in pattern_raw.splitlines())
+        dp2 = (line for line in dp1 if line and line[0] != '#')
+
+        for line in dp2:
+            parts = line.split(" ", 2)
+            print(parts)
+
+            if len(parts) == 2:
+                patch, strokes = parts
+                patch = patch
+                self.instruments.append((patch, strokes))
+                self.steps.append(len(strokes))
+                self.step.append(0)
 
     def reset(self):
-        self.step = 0
+        for i in enumerate(self.step):
+            self.step[i] = 0
 
     def playstep(self, midiout, channel=9):
+        i=0
         for note, strokes in self.instruments:
-            char = strokes[self.step]
+            char = strokes[self.step[i]]
             velocity = self.velocities.get(char)
 
             if velocity is not None:
@@ -277,10 +283,12 @@ class Drumpattern(object):
                     print([NOTE_ON | channel, note, self.drummidimapping[note], max(1, velocity)])
                     self._notes[note] = velocity
 
-        self.step += 1
+            self.step[i] += 1
 
-        if self.step >= self.steps:
-           self.step = 0
+            if self.step[i] >= self.steps[i]:
+                self.step[i] = 0
+
+            i += 1
 
 def selectInputPort():
     portnrstr = input("Select the input port by typing the corresponding number: ")
