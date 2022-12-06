@@ -10,7 +10,7 @@ A pattern is encoded according to the following rules in a text file:
 - a line starting with a `#` is a comment and ignored for the pattern playing
 - an empty line is ignored
 - a "track line" represents an "instrument" with a dedicated pattern to be played
-  - a track line starts with the instrument shortcut (e.g. `#BD1` for bass drum 1) and is followed by a space
+  - a track line starts with the instrument shortcut (e.g. `BD1` for bass drum 1) and is followed by a space
   - the instrument shortcuts are defined in a Drum MIDI Mapping file (`.dmm`, see folder `DrumMidiMappings`) and
     is an alias for a MIDI Note value
   - the second part after the instrument is the pattern that the instrument shall play encoded with characters,
@@ -85,7 +85,7 @@ This makes the Beat Buddy play the drum pattern defined in the file `./DrumSeqPa
 - needs Python3 (tested with version 3.8.2; definitely a version >3.2 needed as argparse is used) and pip3 (usually comes with Python)
 - install `python-rtmidi` by executing: `pip3 install python-rtmidi`
 
-## Development Notes:
+## Development Notes
 This code is 
 
 based on: `drumseq.py` 
