@@ -224,6 +224,8 @@ class Drumpattern(object):
         self.initDrumMidiMapping(drummidimapping)
         self.initDrumPattern(pattern)
 
+        self.checkPatternAndMappingConsistency()
+
 
     def initDrumMidiMapping(self, drummidimapping_raw):
         dmm1 = (line.strip() for line in drummidimapping_raw.splitlines())
@@ -250,6 +252,17 @@ class Drumpattern(object):
                 self.step.append(0)
 
 
+    def checkPatternAndMappingConsistency(self):
+        '''check whether all instruments in the pattern are available in
+        the MIDI mapping.'''
+
+        for (patch, strokes) in self.instruments:
+            if not patch in self.drummidimapping.keys():
+                print("\nWARNING: The following instrument is not part of the MIDI mapping")
+                print("         and therefore the instrument will not be heard when")
+                print("         the pattern is played: " + patch + "\n")
+
+
     def reset(self):
         for i in enumerate(self.step):
             self.step[i] = 0
@@ -263,14 +276,18 @@ class Drumpattern(object):
 
             if velocity is not None:
                 if self._notes.get(note):
-                    midiout.send_message([NOTE_ON | channel, self.drummidimapping[note], 0])
+                    if note in self.drummidimapping.keys():
+                        midiout.send_message([NOTE_ON | channel, self.drummidimapping[note], 0])
                     self._notes[note] = 0
                 if velocity > 0:
                     if self.humanize:
                         velocity += int(round(gauss(0, velocity * self.humanize)))
 
-                    midiout.send_message([NOTE_ON | channel, self.drummidimapping[note], max(1, velocity)])
-                    print([NOTE_ON | channel, note, self.drummidimapping[note], max(1, velocity)])
+                    if note in self.drummidimapping.keys():
+                        midiout.send_message([NOTE_ON | channel, self.drummidimapping[note], max(1, velocity)])
+                        print([NOTE_ON | channel, note, self.drummidimapping[note], max(1, velocity)])
+                    else:
+                        print("WARNING: Note for instrument " + note + " not played!")
                     self._notes[note] = velocity
 
             self.step[i] += 1
@@ -327,10 +344,10 @@ def main(args=None):
     if args.pattern:
         pattern = args.pattern.read()
     else:
-        #pattern = DRUMPATTERN1
-        kit = (args.bank_msb, args.bank_lsb, args.kit)
-        pattern = Drumpattern(FUTUREDRUMPATTERN1, drummidimap, kit=kit,
-                               humanize=args.humanize)
+        pattern = FUTUREDRUMPATTERN1
+        #kit = (args.bank_msb, args.bank_lsb, args.kit)
+        #pattern = Drumpattern(FUTUREDRUMPATTERN1, drummidimap, kit=kit,
+        #                       humanize=args.humanize)
 
     kit = (args.bank_msb, args.bank_lsb, args.kit)
     drumpattern = Drumpattern(pattern, drummidimap, kit=kit,

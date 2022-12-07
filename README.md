@@ -57,7 +57,7 @@ See examples of further drum patterns in the folder `DrumSeqPatterns` of this re
 Check out this repo on your PC (MAC).
 
 
-Import the performance "./PresetsExtDevices/KorgWavestate/MV Simple Drumkit.wsperf" that is here in the repository into your Korg Wavestate using the
+Import the performance `./PresetsExtDevices/KorgWavestate/MV Simple Drumkit.wsperf` that is here in the repository into your Korg Wavestate using the
 Wavestate Editor/Librarian Software and then switch to that performance.
 
 On your PC (MAC), execute the following command:
