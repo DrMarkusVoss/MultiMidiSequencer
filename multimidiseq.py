@@ -19,7 +19,7 @@ from multimidiseq import DrumPattern as dp
 from time import sleep, time as timenow
 
 from rtmidi.midiutil import open_midioutput, list_output_ports, list_input_ports
-
+import rtmidi
 
 # BD1 = BaseDrum1
 # CHH = Closed Hi-hat
@@ -87,6 +87,8 @@ def main(args=None):
     aadd = ap.add_argument
     aadd('-b', '--bpm', type=float, default=100,
          help="Beats per minute (BPM) (default: %(default)s)")
+    aadd('--virtualout', type=bool, default=False,
+         help="Create a MIDI out to SW instruments (like e.g. Korg opsix native) (default: %(default)s)")
     aadd('-r', '--repeats', type=int, default=0,
          help="Number of repeats. 0=infinite (default: %(default)s)")
     aadd('-c', '--channel', type=int, default=1, metavar='CH',
@@ -124,9 +126,15 @@ def main(args=None):
 
     list_output_ports()
 
-    selected_output_port = selectOutputPort()
 
-    midiout, port_name = open_midioutput(selected_output_port)
+
+    if args.virtualout:
+        midiout = rtmidi.MidiOut()
+        midiout.open_virtual_port("MultiMidiSequencer")
+    else:
+        selected_output_port = selectOutputPort()
+        midiout, port_name = open_midioutput(selected_output_port)
+
 
     seq = pseq.PatternSequencer(midiout, drumpattern, args.bpm, args.repeats, args.channel - 1)
 
