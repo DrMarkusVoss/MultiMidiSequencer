@@ -15,6 +15,8 @@ import sys
 
 from multimidiseq import PatternSequencer as pseq
 from multimidiseq import DrumPattern as dp
+from multimidiseq import Track as tp
+from multimidiseq import SongSequencer as sos
 
 from time import sleep, time as timenow
 
@@ -116,13 +118,19 @@ def main(args=None):
         drummidimap = DRUMMIDIASSIGN_KorkWavestate_DrumKit
 
     if args.pattern:
+        filetype = str(args.pattern.name).split(".")[2]
         pattern = args.pattern.read()
     else:
         pattern = FUTUREDRUMPATTERN1
 
-    kit = (args.bank_msb, args.bank_lsb, args.kit)
-    drumpattern = dp.Drumpattern(pattern, drummidimap, kit=kit,
-                          humanize=args.humanize)
+    if filetype == "sdp":
+
+        kit = (args.bank_msb, args.bank_lsb, args.kit)
+        drumpattern = dp.Drumpattern(pattern, drummidimap, kit=kit,
+                              humanize=args.humanize)
+    elif filetype == "sst":
+        trackpattern = tp.Track(pattern)
+
 
     list_output_ports()
 
@@ -136,7 +144,10 @@ def main(args=None):
         midiout, port_name = open_midioutput(selected_output_port)
 
 
-    seq = pseq.PatternSequencer(midiout, drumpattern, args.bpm, args.repeats, args.channel - 1)
+    if filetype == "sdp":
+        seq = pseq.PatternSequencer(midiout, drumpattern, args.bpm, args.repeats, args.channel - 1)
+    elif filetype == "sst":
+        seq = sos.SongSequencer(midiout, pattern, args.channel - 1)
 
     print("Playing drum loop at %.1f BPM, press Control-C to quit." % seq.bpm)
 

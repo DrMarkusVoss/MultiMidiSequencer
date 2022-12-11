@@ -82,8 +82,8 @@ Then, on your PC (MAC), execute the following command:
 This makes the Beat Buddy play the drum pattern defined in the file `./DrumSeqPatterns/basic_drum_2.sdp` at a tempo of 80 bpm.
 
 ## Example with a SW synth like e.g. the Korg native SW synths
-Instead of selecting a real MIDI output port, you have to create a virtual SW output port. This will be created
-with by giving the additional argument `--virtualout True` to the command line tool like this: 
+Instead of selecting a real MIDI output port, you have to create a virtual SW output port. This will be created 
+by giving the additional argument `--virtualout True` to the command line tool like this: 
 ```
 python3 multimidiseq.py -m ./DrumMidiMappings/BeatBuddy.dmm ./DrumSeqPatterns/basic_drum_2.sdp -virtualout True
 ```
