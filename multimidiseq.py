@@ -126,8 +126,8 @@ def main(args=None):
     if filetype == "sdp":
 
         kit = (args.bank_msb, args.bank_lsb, args.kit)
-        drumpattern = dp.Drumpattern(pattern, drummidimap, kit=kit,
-                              humanize=args.humanize)
+        drumpattern = dp.DrumPattern(pattern, drummidimap, kit=kit,
+                                     humanize=args.humanize)
     elif filetype == "sst":
         trackpattern = tp.Track(pattern)
 

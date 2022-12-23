@@ -2,7 +2,7 @@ from random import gauss
 from rtmidi.midiconstants import (ALL_SOUND_OFF, BANK_SELECT_LSB,
                                   BANK_SELECT_MSB, CHANNEL_VOLUME,
                                   CONTROL_CHANGE, NOTE_ON, PROGRAM_CHANGE)
-class Drumpattern(object):
+class DrumPattern(object):
     """Container and iterator for a multi-track step sequence."""
 
     velocities = {

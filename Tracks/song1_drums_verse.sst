@@ -6,15 +6,15 @@
 
 # define tempo
 BPM 120
-DMM ./../DrumMidiMappings/BeatBuddy.dmm
+DMM ./DrumMidiMappings/BeatBuddy.dmm
 
 # definition of patterns with pattern short cuts
 # <pattern_shortcut> <pattern_path_and_filename>
-CI ./../DrumSeqPatterns/count_in_8.sdp
-P1 ./../DrumSeqPatterns/basic_drum_1.sdp
-P2 ./../DrumSeqPatterns/basic_drum_2.sdp
-P3 ./../DrumSeqPatterns/basic_drum_3.sdp
-P4 ./../DrumSeqPatterns/basic_drum_4.sdp
+CI ./DrumSeqPatterns/count_in_8.sdp
+P1 ./DrumSeqPatterns/basic_drum_1.sdp
+P2 ./DrumSeqPatterns/basic_drum_2.sdp
+P3 ./DrumSeqPatterns/basic_drum_3.sdp
+P4 ./DrumSeqPatterns/basic_drum_4.sdp
 
 # definition of track
 # <track_name> <pattern shortcuts separated by space>

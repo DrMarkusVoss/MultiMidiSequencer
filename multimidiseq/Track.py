@@ -13,9 +13,20 @@ class Track(object):
         self.patterns = {}
         self.trackseq = []
         self.initTrack(track_raw)
+        self.initDmm()
+        self.initPatterns()
+        print(self.patterns)
+
+    def initDmm(self):
+        # open the pattern file
+        file = open(self.dmm_fn, mode='r')
+        # read all lines at once
+        self.dmm = file.read()
+        # close the file
+        file.close()
 
     def initPatterns(self):
-        if not dmm == None:
+        if not self.dmm == None:
             for e in self.pattern_shortcuts:
                 # open the pattern file
                 file = open(self.pattern_shortcuts[e], mode='r')
@@ -41,7 +52,7 @@ class Track(object):
                 if parts[0] == "BPM":
                     self.bpm = float(parts[1])
                 elif parts[0] == "DMM":
-                    self.dmm = parts[1]
+                    self.dmm_fn = parts[1]
                 else:
                     self.pattern_shortcuts[parts[0]] = parts[1]
             if len(parts) > 2:
