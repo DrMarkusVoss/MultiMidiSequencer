@@ -6,6 +6,7 @@
 
 # define tempo
 BPM 120
+DMM ./../DrumMidiMappings/BeatBuddy.dmm
 
 # definition of patterns with pattern short cuts
 # <pattern_shortcut> <pattern_path_and_filename>

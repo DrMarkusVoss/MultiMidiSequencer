@@ -8,18 +8,18 @@ from multimidiseq import Track as tk
 class SongSequencer(threading.Thread):
     """MIDI output and scheduling thread."""
 
-    def __init__(self, midiout, pattern, repeats=0, channel=0, volume=127):
+    def __init__(self, midiout, track_raw, repeats=0, channel=0, volume=127):
         super(SongSequencer, self).__init__()
 
-        track = tk.Track(pattern)
+        self.track = tk.Track(track_raw)
 
         self.midiout = midiout
-        self.bpm = max(20, min(track.bpm, 400))
+        self.bpm = max(20, min(self.track.bpm, 400))
         self.interval = 15. / self.bpm
-        self.pattern = pattern
         self.repeats=repeats
         self.channel = channel
         self.volume = volume
+        print(self.track)
         self.start()
 
     def run(self):
@@ -59,5 +59,6 @@ class SongSequencer(threading.Thread):
         """
         # TODO: work through the tracks list of patterns to be played,
         #       there step through each pattern step-by-step
-        self.pattern.playstep(self.midiout, self.channel)
+        #self.pattern.playstep(self.midiout, self.channel)
+        print(self.track.trackseq)
 
