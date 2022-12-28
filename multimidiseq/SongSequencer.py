@@ -35,8 +35,8 @@ class SongSequencer(threading.Thread):
         sleep(0.3)
         self.started = timenow()
         ind = 0
-        self.current_pattern = self.track.patterns[list(self.track.patterns.keys())[ind]]
-        self.current_pattern_name = list(self.track.patterns.keys())[ind]
+        self.current_pattern = self.track.patterns[self.track.trackseq[ind]]
+        self.current_pattern_name = self.track.trackseq[ind]
         print("now playing pattern: " + self.current_pattern_name)
 
         while not self.done:
@@ -54,10 +54,10 @@ class SongSequencer(threading.Thread):
 
             if self.callcount == self.pattern_length_sum + self.current_pattern.length:
                 ind += 1
-                if len(list(self.track.patterns.keys())) > ind:
+                if len(self.track.trackseq) > ind:
                     self.pattern_length_sum += self.current_pattern.length
-                    self.current_pattern = self.track.patterns[list(self.track.patterns.keys())[ind]]
-                    self.current_pattern_name = list(self.track.patterns.keys())[ind]
+                    self.current_pattern = self.track.patterns[self.track.trackseq[ind]]
+                    self.current_pattern_name = self.track.trackseq[ind]
                     print("now playing pattern: " + self.current_pattern_name)
                 else:
                     self.done = True

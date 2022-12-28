@@ -57,6 +57,6 @@ class Track(object):
                     self.pattern_shortcuts[parts[0]] = parts[1]
             if len(parts) > 2:
                 self.name = parts[0]
-                print(parts)
+                #print(parts)
                 for e in parts[1:len(parts)]:
                     self.trackseq.append(e)

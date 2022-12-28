@@ -37,7 +37,7 @@ class DrumPattern(object):
         for line in dmm2:
             parts = line.split(" ", 2)
             self.drummidimapping[parts[0]] = int(parts[1])
-        print(self.drummidimapping)
+        # print(self.drummidimapping)
 
 
     def initDrumPattern(self, pattern_raw):
@@ -46,7 +46,7 @@ class DrumPattern(object):
 
         for line in dp2:
             parts = line.split(" ", 2)
-            print(parts)
+            # print(parts)
 
             if len(parts) == 2:
                 patch, strokes = parts
