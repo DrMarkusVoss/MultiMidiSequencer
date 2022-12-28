@@ -91,6 +91,11 @@ python3 multimidiseq.py -m ./DrumMidiMappings/BeatBuddy.dmm ./DrumSeqPatterns/ba
 Now the pattern will be played on a virtual SW MIDI output called "MultiMidiSequencer". Select that port in your
 SW synth's settings as MIDI input source.
 
+## Playing a track
+```
+ python3 multimidiseq.py -m ./DrumMidiMappings/BeatBuddy.dmm ./Tracks/song1_drums_verse.sst 
+```
+
 ## Installation Requirements
 - needs Python3 (tested with version 3.8.2; definitely a version >3.2 needed as argparse is used) and pip3 (usually comes with Python)
 - install `python-rtmidi` by executing: `pip3 install python-rtmidi`

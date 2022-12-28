@@ -8,7 +8,7 @@ from multimidiseq import Track as tk
 class SongSequencer(threading.Thread):
     """MIDI output and scheduling thread."""
 
-    def __init__(self, midiout, track_raw, repeats=0, channel=0, volume=127):
+    def __init__(self, midiout, track_raw, repeats=1, channel=0, volume=127):
         super(SongSequencer, self).__init__()
 
         self.track = tk.Track(track_raw)
@@ -16,11 +16,14 @@ class SongSequencer(threading.Thread):
         self.midiout = midiout
         self.bpm = max(20, min(self.track.bpm, 400))
         self.interval = 15. / self.bpm
-        self.repeats=repeats
+        self.repeats=1
         self.channel = channel
         self.volume = volume
         print(self.track)
         self.start()
+        self.current_pattern = None
+        self.current_pattern_name = ""
+        self.pattern_length_sum = 0
 
     def run(self):
         self.done = False
@@ -31,6 +34,10 @@ class SongSequencer(threading.Thread):
         # give MIDI instrument some time to activate drumkit
         sleep(0.3)
         self.started = timenow()
+        ind = 0
+        self.current_pattern = self.track.patterns[list(self.track.patterns.keys())[ind]]
+        self.current_pattern_name = list(self.track.patterns.keys())[ind]
+        print("now playing pattern: " + self.current_pattern_name)
 
         while not self.done:
             self.worker()
@@ -44,8 +51,15 @@ class SongSequencer(threading.Thread):
             else:
                 print("Oops!")
 
-            if not self.repeats==0:
-                if self.callcount == self.repeats*self.pattern.length:
+
+            if self.callcount == self.pattern_length_sum + self.current_pattern.length:
+                ind += 1
+                if len(list(self.track.patterns.keys())) > ind:
+                    self.pattern_length_sum += self.current_pattern.length
+                    self.current_pattern = self.track.patterns[list(self.track.patterns.keys())[ind]]
+                    self.current_pattern_name = list(self.track.patterns.keys())[ind]
+                    print("now playing pattern: " + self.current_pattern_name)
+                else:
                     self.done = True
 
         self.midiout.send_message([cc, ALL_SOUND_OFF, 0])
@@ -59,6 +73,7 @@ class SongSequencer(threading.Thread):
         """
         # TODO: work through the tracks list of patterns to be played,
         #       there step through each pattern step-by-step
-        #self.pattern.playstep(self.midiout, self.channel)
-        print(self.track.trackseq)
+        self.current_pattern.playstep(self.midiout, self.channel)
+
+
 
