@@ -1,7 +1,9 @@
 # Drum MIDI Mapping file
 #
-# for General MIDI
-# according to this: https://en.wikipedia.org/wiki/General_MIDI#Percussion
+# for the Behringer RD-9.
+#
+# There is a difference between the manual and the RD-9 factory default
+# mine had. Mine default snare = 40, manual says 38.
 #
 # by Dr. Markus Voss
 
