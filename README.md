@@ -92,8 +92,10 @@ Now the pattern will be played on a virtual SW MIDI output called "MultiMidiSequ
 SW synth's settings as MIDI input source.
 
 ## Playing a track
+The MIDI device mapping is referenced from within the .sst file.
+
 ```
- python3 multimidiseq.py -m ./DrumMidiMappings/BeatBuddy.dmm ./Tracks/song1_drums_verse.sst 
+ python3 multimidiseq.py ./Tracks/song1_drums_verse.sst 
 ```
 
 ## Installation Requirements
