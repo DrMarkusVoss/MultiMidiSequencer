@@ -1,0 +1,44 @@
+# Drum MIDI Mapping file
+#
+# for General MIDI
+# according to this: https://en.wikipedia.org/wiki/General_MIDI#Percussion
+#
+# by Dr. Markus Voss
+
+# Instrument Shortcuts, FYI:
+# BD1 = BaseDrum1
+# CHH = Closed Hi-hat
+# OHH = Open Hi-hat
+# SN1 = Snare1
+# SN2 = Snare2
+# CR1 = Crash1
+# CR2 = Crash2
+# RD1 = Ride1
+# RD2 = Ride2
+# CB1 = Cowbell1
+# CP1 = Clap1
+# TM1 = TOM1
+# TM2 = TOM2
+# TM3 = TOM3
+# TM4 = TOM4
+# RM1 = RIM1
+# RM2 = RIM2
+# ST1 = Sticks1
+# ST2 = Side stick
+
+# MIDI note mapping:
+BD1 36
+SN1 40
+CHH 42
+OHH 46
+CR1 49
+RD1 51
+TM1 50
+TM2 47
+TM3 45
+TM4 43
+CP1 39
+RM1 37
+ST1 37
+ST2 37
+

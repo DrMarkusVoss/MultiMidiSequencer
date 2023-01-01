@@ -1,0 +1,11 @@
+# Midi Device IO Mappings
+#
+# for Song 1
+#
+# by Dr. Markus Voss
+
+InputDeviceName="MPK Mini Mk II"
+InputMIDIChannel=0
+
+OutputDeviceName="UMC404HD 192k"
+OutputMIDIChannel=0

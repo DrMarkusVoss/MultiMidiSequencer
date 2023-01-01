@@ -6,7 +6,9 @@
 
 # define tempo
 BPM 120
-DMM ./DrumMidiMappings/BeatBuddy.dmm
+DMM ./DrumMidiMappings/Behringer_RD-9.dmm
+
+# PSM ./PatternShortcutMappings/Song1.psm
 
 # definition of patterns with pattern short cuts
 # <pattern_shortcut> <pattern_path_and_filename>
