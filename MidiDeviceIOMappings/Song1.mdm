@@ -7,5 +7,5 @@
 InputDeviceName="MPK Mini Mk II"
 InputMIDIChannel=0
 
-OutputDeviceName="UMC404HD 192k"
+OutputDeviceName="RD-9"
 OutputMIDIChannel=0

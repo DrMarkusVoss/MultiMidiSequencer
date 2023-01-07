@@ -6,8 +6,11 @@
 
 # define tempo
 BPM 120
+
+# reference the Drum MIDI Mapping
 DMM ./DrumMidiMappings/Behringer_RD-9.dmm
 
+# reference the Pattern Shortcut Mappings
 # PSM ./PatternShortcutMappings/Song1.psm
 
 # definition of patterns with pattern short cuts
