@@ -14,7 +14,7 @@ class MultilineNotePattern(object):
         "x": 120,   # hard
     }
 
-    def __init__(self, pattern, drummidimapping, kit=0, humanize=0):
+    def __init__(self, pattern, kit=0, humanize=0):
         self.instruments = []
         self.kit = kit
         self.humanize = humanize
@@ -27,8 +27,10 @@ class MultilineNotePattern(object):
         self.voices_notes = {}
 
         self.initMultilineNotePattern(pattern)
+        print(self.voices_notes)
+        print(self.instruments)
 
-        self.length = max(self.steps)
+        #self.length = max(self.steps)
 
     def initMultilineNotePattern(self, pattern_raw):
         p1 = (line.strip() for line in pattern_raw.splitlines())
@@ -51,13 +53,29 @@ class MultilineNotePattern(object):
                 voice_name = parts[0]
                 self.voice_names.append(voice_name)
                 notelist = []
+                notes = []
+                vels = []
+
                 for e in parts[1:len(parts)]:
-                    notelist.append(e)
+                    if e not in ["", " "]:
+                        if len(e) == 3:
+                            vel = e[0]
+                            vels.append(vel)
+                            note = e[1:3]
+                            notes.append(note)
+                            vn_pair = [vel, note]
+                            notelist.append(vn_pair)
+                        else:
+                            print("ERROR: Wrong note format: " + e)
+                self.steps.append(len(notelist))
+                self.instruments.append((voice_name, vels, notes))
+                self.step.append(0)
                 self.voices_notes[voice_name] = notelist
+
                 # patch, strokes = parts
                 # patch = patch
                 # self.instruments.append((patch, strokes))
-                # self.steps.append(len(strokes))
+                #self.steps.append(len(strokes))
                 # self.step.append(0)
 
 
@@ -69,25 +87,23 @@ class MultilineNotePattern(object):
     def playstep(self, midiout, channel=9):
         # TODO: needs rework for the multilne note playing
         i=0
-        for note, strokes in self.instruments:
+        for voice_name, strokes, notes in self.instruments:
             char = strokes[self.step[i]]
             velocity = self.velocities.get(char)
+            note = notes[self.step[i]]
 
             if velocity is not None:
-                if self._notes.get(note):
-                    if note in self.drummidimapping.keys():
-                        midiout.send_message([NOTE_ON | channel, self.drummidimapping[note], 0])
-                    self._notes[note] = 0
+                if self._notes.get(notes[i]):
+                    print(note, velocity)
+                    midiout.send_message([NOTE_ON | channel, int(note), 0])
+                    self._notes[notes[i]] = 0
                 if velocity > 0:
                     if self.humanize:
                         velocity += int(round(gauss(0, velocity * self.humanize)))
+                    print([NOTE_ON | channel, voice_name, note, max(1, velocity)])
+                    midiout.send_message([NOTE_ON | channel, int(note), max(1, velocity)])
 
-                    if note in self.drummidimapping.keys():
-                        midiout.send_message([NOTE_ON | channel, self.drummidimapping[note], max(1, velocity)])
-                        print([NOTE_ON | channel, note, self.drummidimapping[note], max(1, velocity)])
-                    else:
-                        print("WARNING: Note for instrument " + note + " not played!")
-                    self._notes[note] = velocity
+                    self._notes[notes[i]] = velocity
 
             self.step[i] += 1
 

@@ -22,7 +22,7 @@ class PatternSequencer(threading.Thread):
     def run(self):
         self.done = False
         self.callcount = 0
-        self.activate_drumkit(self.pattern.kit)
+        #self.activate_drumkit(self.pattern.kit)
         cc = CONTROL_CHANGE | self.channel
         self.midiout.send_message([cc, CHANNEL_VOLUME, self.volume & 0x7F])
 

@@ -98,6 +98,15 @@ The MIDI device mapping is referenced from within the .sst file.
  python3 multimidiseq.py ./Tracks/song1_drums_verse.sst 
 ```
 
+## Pattern Sequencer with MultilineNotePattern
+You can define several parallel "lines" of notes, each of different lengths, that get repeated indepentently.
+The velocities are similar to the drum patterns, but directly after the velocity the MIDI note value is encoded.
+See the example .mnp file here:
+
+```
+ python3 multimidiseq.py ./MultilineNotePatterns/song1_verse.mnp 
+```
+
 ## Installation Requirements
 - needs Python3 (tested with version 3.8.2; definitely a version >3.2 needed as argparse is used) and pip3 (usually comes with Python)
 - install `python-rtmidi` by executing: `pip3 install python-rtmidi`

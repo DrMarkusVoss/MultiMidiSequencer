@@ -17,6 +17,7 @@ from multimidiseq import PatternSequencer as pseq
 from multimidiseq import DrumPattern as dp
 from multimidiseq import Track as tp
 from multimidiseq import SongSequencer as sos
+from multimidiseq import MultilineNotePattern as mnp
 
 from time import sleep, time as timenow
 
@@ -131,6 +132,9 @@ def main(args=None):
     elif filetype == "sst":
         trackpattern = tp.Track(pattern)
 
+    elif filetype == "mnp":
+        mnpattern = mnp.MultilineNotePattern(pattern)
+
 
     list_output_ports()
 
@@ -148,6 +152,8 @@ def main(args=None):
         seq = pseq.PatternSequencer(midiout, drumpattern, args.bpm, args.repeats, args.channel - 1)
     elif filetype == "sst":
         seq = sos.SongSequencer(midiout, pattern, args.channel - 1)
+    elif filetype == "mnp":
+        seq = pseq.PatternSequencer(midiout, mnpattern, args.bpm, args.repeats, args.channel - 1)
 
     print("Playing drum loop at %.1f BPM, press Control-C to quit." % seq.bpm)
 
